@@ -40,11 +40,18 @@ class OpinionesController extends Controller
       //
       // return back();
 
+      $this->validate($request, [
+        'mensaje' => 'required | min:20'
+      ],[
+        'required' => 'El campo :attribute no puede ser vacío.',
+        'min' => 'El campo :attribute debe ser mayor a 20 carácteres.'
+      ]);
+
       $opinion = new Opinione($request->all());
 
-      $opinion->usser_id = 1;
+      // $opinion->usser_id = 1;
       // $opinion->usser_id = Auth::id();
-      $monumento->addOpinione($opinion);
+      $monumento->addOpinione($opinion, 1);
       // $monumento->addOpinione(
       //   new Opinione( $request->all() )
       // );

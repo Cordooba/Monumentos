@@ -28,23 +28,23 @@
 //     return view ('paginas.about');
 // });
 
-Route::get('contacto', function () {
-
-	$personas = ['Javi','Juan','Ale','Fran','Joaquin'];
-
-	// return view('paginas.contacto', ['personas' => $personas]);
-  //
-	// compact — Crear un array que contiene variables y sus valores
-
-
-	return view('paginas.contacto', compact('personas'));
-
-
-	// return view('paginas.contacto')->with('personas', $personas);
-	// return view('paginas.contacto')->with(['personas' => $personas]);
-	// return view('paginas.contacto')->withPersonas($personas);
-
-});
+// Route::get('contacto', function () {
+//
+// 	$personas = ['Javi','Juan','Ale','Fran','Joaquin'];
+//
+// 	// return view('paginas.contacto', ['personas' => $personas]);
+//   //
+// 	// compact — Crear un array que contiene variables y sus valores
+//
+//
+// 	return view('paginas.contacto', compact('personas'));
+//
+//
+// 	// return view('paginas.contacto')->with('personas', $personas);
+// 	// return view('paginas.contacto')->with(['personas' => $personas]);
+// 	// return view('paginas.contacto')->withPersonas($personas);
+//
+// });
 
 //Controlador : Paginas.php
 //Class Paginas extends... {
@@ -61,23 +61,23 @@ Route::get('contacto', function () {
 
 //En la terminal php artisan make:controller NOMBRECONTROLADOR
 
-Route::get('/', function(){
-	return redirect('monumentos');
-});
+// Route::get('/', function(){
+// 	return redirect('monumentos');
+// });
 
 //Entre llaves nos encontraremos los parametros
-Route::get('monumentos', 'MonumentosController@index');
-Route::get('monumentos/{monumento}', 'MonumentosController@show')->where('monumento','[0-9]+');
+// Route::get('monumentos', 'MonumentosController@index');
+// Route::get('monumentos/{monumento}', 'MonumentosController@show')->where('monumento','[0-9]+');
 //Esta funcion no es valida si tienes que pasarle mas de un parametro
 //para ello se estableceran por array
 // Route::get('monumentos/{uno}/{dos}', 'MonumentosController@show');
-Route::get('opiniones/{opinione}/edit', 'OpinionesController@edit');
-Route::patch('opiniones/{opinione}', 'OpinionesController@update');
-
-Route::post('monumentos/{monumento}', 'OpinionesController@store')->where('monumento','[0-9]+');
-Route::get('about', 'MonumentosController@aboutIndex');
-
-Route::delete('opiniones/{opinione}', 'OpinionesController@delete');
+// Route::get('opiniones/{opinione}/edit', 'OpinionesController@edit');
+// Route::patch('opiniones/{opinione}', 'OpinionesController@update');
+//
+// Route::post('monumentos/{monumento}', 'OpinionesController@store')->where('monumento','[0-9]+');
+// Route::get('about', 'MonumentosController@aboutIndex');
+//
+// Route::delete('opiniones/{opinione}', 'OpinionesController@delete');
 // Route::get('opiniones/{opinione}/del', 'OpinionesController@delete');
 /*
 |--------------------------------------------------------------------------
@@ -91,5 +91,25 @@ Route::delete('opiniones/{opinione}', 'OpinionesController@delete');
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+
+	Route::get('contacto', function () {
+
+		$personas = ['Javi','Juan','Ale','Fran','Joaquin'];
+
+		return view('paginas.contacto', compact('personas'));
+
+	});
+
+	Route::get('/', function(){
+		return redirect('monumentos');
+	});
+
+	Route::get('monumentos', 'MonumentosController@index');
+	Route::get('monumentos/{monumento}', 'MonumentosController@show')->where('monumento','[0-9]+');
+	Route::get('opiniones/{opinione}/edit', 'OpinionesController@edit');
+	Route::patch('opiniones/{opinione}', 'OpinionesController@update');
+	Route::post('monumentos/{monumento}', 'OpinionesController@store')->where('monumento','[0-9]+');
+	Route::get('about', 'MonumentosController@aboutIndex');
+	Route::delete('opiniones/{opinione}', 'OpinionesController@delete');
+
 });
